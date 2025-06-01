@@ -90,7 +90,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BoxContainer3/VBoxContainer"]
 layout_mode = 2
-text = "-----sound------"
+text = "~----volume-----~"
 label_settings = SubResource("LabelSettings_ohypt")
 
 [node name="VolumeSlider" type="HSlider" parent="BoxContainer3/VBoxContainer"]

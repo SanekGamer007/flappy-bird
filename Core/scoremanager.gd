@@ -4,7 +4,7 @@ var bird_node: Bird
 var highscore: int
 
 func _ready() -> void:
-	highscore = SaveSystem.get_var("highscore")
+	highscore = SaveSystem.get_var("highscore", 0)
 	get_tree().node_added.connect(_on_any_node_tree_entered)
 func _on_any_node_tree_entered(node: Node) -> void:
 	if bird_node:
