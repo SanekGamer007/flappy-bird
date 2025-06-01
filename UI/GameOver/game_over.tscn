@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bwjeqy0aqqjmx"]
+[gd_scene load_steps=13 format=3 uid="uid://bwjeqy0aqqjmx"]
 
-[ext_resource type="Script" uid="uid://c1cc0y3p32s42" path="res://Objects/GameOver/game_over.gd" id="1_stv8v"]
-[ext_resource type="Texture2D" uid="uid://cb8apcivvdr6h" path="res://UI/Game_Over/gameover.png" id="1_vg4fq"]
+[ext_resource type="Script" uid="uid://c1cc0y3p32s42" path="res://UI/GameOver/game_over.gd" id="1_stv8v"]
+[ext_resource type="Texture2D" uid="uid://cb8apcivvdr6h" path="res://UI/GameOver/Textures/gameover.png" id="1_vg4fq"]
 [ext_resource type="FontFile" uid="uid://cxatv0tj5b4bl" path="res://Assets/Fonts/Number_Bitmap/font.png" id="3_stv8v"]
-[ext_resource type="Script" uid="uid://c56r5qau3ur5w" path="res://Objects/GameOver/exit.gd" id="4_f2d3h"]
-[ext_resource type="Script" uid="uid://dvriws7j2np6l" path="res://Objects/GameOver/score.gd" id="4_stv8v"]
-[ext_resource type="Script" uid="uid://ridtdphkc4mb" path="res://Objects/GameOver/highscore.gd" id="5_ammoo"]
+[ext_resource type="Script" uid="uid://c56r5qau3ur5w" path="res://UI/GameOver/exit.gd" id="4_f2d3h"]
+[ext_resource type="Script" uid="uid://dvriws7j2np6l" path="res://UI/GameOver/score.gd" id="4_stv8v"]
+[ext_resource type="Script" uid="uid://ridtdphkc4mb" path="res://UI/GameOver/highscore.gd" id="5_ammoo"]
+[ext_resource type="Script" uid="uid://clkjvuhyyoyyu" path="res://UI/GameOver/restart.gd" id="6_8jj01"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ammoo"]
 font = ExtResource("3_stv8v")
@@ -19,6 +20,7 @@ font = ExtResource("3_stv8v")
 font_size = 48
 
 [sub_resource type="SystemFont" id="SystemFont_ekr48"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_3hdm5"]
 font = SubResource("SystemFont_ekr48")
@@ -117,10 +119,17 @@ label_settings = SubResource("LabelSettings_3hdm5")
 layout_mode = 2
 alignment = 1
 
+[node name="restart" type="Button" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "RESTART"
+script = ExtResource("6_8jj01")
+
 [node name="Button" type="Button" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 text = "GO TO MENU"
 script = ExtResource("4_f2d3h")
 
+[connection signal="pressed" from="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/restart" to="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/restart" method="_on_pressed"]
 [connection signal="pressed" from="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/Button" to="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/Button" method="_on_pressed"]

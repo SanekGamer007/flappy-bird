@@ -8,8 +8,8 @@ extends HSlider
 
 func _ready() -> void:
 	value = SaveSystem.get_var("AudioVolume", 0.5)
-	AudioServer.set_bus_volume_db(_bus, SaveSystem.get_var("AudioVolume", linear_to_db(0.5)))
-
+	AudioServer.set_bus_volume_linear(_bus, value)
 func _on_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(_bus, linear_to_db(value))
+	print(value, AudioServer.get_bus_volume_linear(_bus))
+	AudioServer.set_bus_volume_linear(_bus, value)
 	SaveSystem.set_var("AudioVolume", value)

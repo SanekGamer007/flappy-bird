@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dnbmwpu5f8h8p"]
+[gd_scene load_steps=8 format=3 uid="uid://dnbmwpu5f8h8p"]
 
 [ext_resource type="Script" uid="uid://b1bg6s23pkuwb" path="res://Objects/FadeManager/fade_manager.gd" id="1_k71l7"]
 
@@ -48,6 +48,22 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_g2vnv"]
+resource_name = "fadeinoutquick"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FadeManager/CanvasLayer/faderect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.375, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_k71l7"]
 resource_name = "fadeout"
 tracks/0/type = "value"
@@ -68,6 +84,7 @@ _data = {
 &"RESET": SubResource("Animation_osqbt"),
 &"fadein": SubResource("Animation_c1bj7"),
 &"fadeinout": SubResource("Animation_x02mx"),
+&"fadeinoutquick": SubResource("Animation_g2vnv"),
 &"fadeout": SubResource("Animation_k71l7")
 }
 
