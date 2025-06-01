@@ -14,7 +14,7 @@ func spawn() -> void:
 	
 func _process(delta: float) -> void:
 	if position.x < -128:
-		position.x = 1280
+		position.x = get_viewport_rect().size.x
 		spawn()
 	position.x -= 256 * delta
 

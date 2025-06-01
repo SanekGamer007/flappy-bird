@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2yjtj36wydun"]
+[gd_scene load_steps=9 format=3 uid="uid://b2yjtj36wydun"]
 
 [ext_resource type="PackedScene" uid="uid://kx51b7pv33ab" path="res://Objects/Background/background.tscn" id="1_hxobb"]
 [ext_resource type="Script" uid="uid://ya3jry8n4p8r" path="res://Maps/Title/start_button.gd" id="2_hxobb"]
@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dupv2eocby7um" path="res://Objects/Pipes/pipe.tscn" id="3_vjy05"]
 [ext_resource type="PackedScene" uid="uid://b1aa4o38u2oht" path="res://Objects/Ground/ground.tscn" id="4_2qin0"]
 [ext_resource type="Texture2D" uid="uid://bkmwmt2101233" path="res://UI/Title/startbutton.png" id="4_ubp43"]
+[ext_resource type="Script" uid="uid://yw52mefcao5e" path="res://Maps/Title/volume_slider.gd" id="7_ubp43"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ohypt"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,13 +23,15 @@ grow_vertical = 2
 [node name="Background" parent="." instance=ExtResource("1_hxobb")]
 
 [node name="Pipe" parent="." instance=ExtResource("3_vjy05")]
-position = Vector2(1285, 490)
+position = Vector2(104, 529)
 
 [node name="Pipe2" parent="." instance=ExtResource("3_vjy05")]
-position = Vector2(1745, 636)
+position = Vector2(571, 296)
 
 [node name="Pipe3" parent="." instance=ExtResource("3_vjy05")]
-position = Vector2(2191, 412)
+position = Vector2(1039, 569)
+
+[node name="Ground" parent="." instance=ExtResource("4_2qin0")]
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
 layout_mode = 1
@@ -66,6 +73,33 @@ layout_mode = 2
 texture_normal = ExtResource("4_ubp43")
 script = ExtResource("2_hxobb")
 
-[node name="Ground" parent="." instance=ExtResource("4_2qin0")]
+[node name="BoxContainer3" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.95
+anchor_right = 0.01
+anchor_bottom = 0.95
+offset_top = -43.0
+offset_right = 105.0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "-----sound------"
+label_settings = SubResource("LabelSettings_ohypt")
+
+[node name="VolumeSlider" type="HSlider" parent="BoxContainer3/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+ticks_on_borders = true
+script = ExtResource("7_ubp43")
 
 [connection signal="pressed" from="BoxContainer2/Button" to="BoxContainer2/Button" method="_on_pressed"]
+[connection signal="value_changed" from="BoxContainer3/VBoxContainer/VolumeSlider" to="BoxContainer3/VBoxContainer/VolumeSlider" method="_on_value_changed"]

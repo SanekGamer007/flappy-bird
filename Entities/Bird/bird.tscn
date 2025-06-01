@@ -70,7 +70,6 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="score"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_mfn8g")
 debug_color = Color(0.713565, 0.483862, 0, 0.164706)
 
@@ -78,7 +77,6 @@ debug_color = Color(0.713565, 0.483862, 0, 0.164706)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox"]
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_yppci")
 debug_color = Color(0.976471, 0, 0.396078, 0.211765)
 
