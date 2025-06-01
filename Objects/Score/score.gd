@@ -3,6 +3,7 @@ var birdexists: bool = false
 var bird_dead: bool = false
 
 func _ready() -> void:
+	position.x = get_viewport_rect().size.x / 2
 	if get_node_or_null(^"../Bird"):
 		birdexists = true
 		(get_node(^"../Bird") as Bird).died.connect(_on_bird_died)
