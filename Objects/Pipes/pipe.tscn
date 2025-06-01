@@ -35,6 +35,7 @@ rotation = 3.14159
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_5rpxj")
 centered = false
+flip_h = true
 
 [node name="score" type="Area2D" parent="."]
 
