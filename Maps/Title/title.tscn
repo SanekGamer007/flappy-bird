@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2yjtj36wydun"]
+
+[ext_resource type="PackedScene" uid="uid://kx51b7pv33ab" path="res://Objects/Background/background.tscn" id="1_hxobb"]
+[ext_resource type="Script" uid="uid://ya3jry8n4p8r" path="res://Maps/Title/start_button.gd" id="2_hxobb"]
+[ext_resource type="Texture2D" uid="uid://d1e0kbd6i5hvg" path="res://UI/Title/logo.png" id="3_osqbt"]
+[ext_resource type="PackedScene" uid="uid://dupv2eocby7um" path="res://Objects/Pipes/pipe.tscn" id="3_vjy05"]
+[ext_resource type="PackedScene" uid="uid://b1aa4o38u2oht" path="res://Objects/Ground/ground.tscn" id="4_2qin0"]
+[ext_resource type="Texture2D" uid="uid://bkmwmt2101233" path="res://UI/Title/startbutton.png" id="4_ubp43"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("1_hxobb")]
+
+[node name="Pipe" parent="." instance=ExtResource("3_vjy05")]
+position = Vector2(1285, 490)
+
+[node name="Pipe2" parent="." instance=ExtResource("3_vjy05")]
+position = Vector2(1745, 636)
+
+[node name="Pipe3" parent="." instance=ExtResource("3_vjy05")]
+position = Vector2(2191, 412)
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.1
+offset_left = -260.5
+offset_right = 260.5
+offset_bottom = 132.0
+grow_horizontal = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+scale = Vector2(6, 6)
+texture = ExtResource("3_osqbt")
+centered = false
+offset = Vector2(-2, 0)
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_left = -28.0
+offset_top = -20.0
+offset_right = 28.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+pivot_offset = Vector2(28, 20)
+alignment = 1
+
+[node name="Button" type="TextureButton" parent="BoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("4_ubp43")
+script = ExtResource("2_hxobb")
+
+[node name="Ground" parent="." instance=ExtResource("4_2qin0")]
+
+[connection signal="pressed" from="BoxContainer2/Button" to="BoxContainer2/Button" method="_on_pressed"]

@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwjeqy0aqqjmx"]
+
+[ext_resource type="Script" uid="uid://c1cc0y3p32s42" path="res://Objects/GameOver/game_over.gd" id="1_stv8v"]
+[ext_resource type="Texture2D" uid="uid://cb8apcivvdr6h" path="res://UI/Game_Over/gameover.png" id="1_vg4fq"]
+[ext_resource type="FontFile" uid="uid://cxatv0tj5b4bl" path="res://Assets/Fonts/Number_Bitmap/font.png" id="3_stv8v"]
+[ext_resource type="Script" uid="uid://c56r5qau3ur5w" path="res://Objects/GameOver/exit.gd" id="4_f2d3h"]
+[ext_resource type="Script" uid="uid://dvriws7j2np6l" path="res://Objects/GameOver/score.gd" id="4_stv8v"]
+[ext_resource type="Script" uid="uid://ridtdphkc4mb" path="res://Objects/GameOver/highscore.gd" id="5_ammoo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ammoo"]
+font = ExtResource("3_stv8v")
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_1g3bt"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_nc44l"]
+font = ExtResource("3_stv8v")
+font_size = 48
+
+[sub_resource type="SystemFont" id="SystemFont_ekr48"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3hdm5"]
+font = SubResource("SystemFont_ekr48")
+font_size = 24
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_stv8v")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxContainer"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_vg4fq")
+offset = Vector2(4, 0)
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="BoxContainer2"]
+custom_minimum_size = Vector2(360, 192)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -69.0
+offset_right = 78.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxContainer2/Panel/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_ammoo")
+script = ExtResource("4_stv8v")
+
+[node name="Label2" type="Label" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "score"
+label_settings = SubResource("LabelSettings_1g3bt")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Highscore" type="Label" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_nc44l")
+script = ExtResource("5_ammoo")
+
+[node name="Label2" type="Label" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "high score"
+label_settings = SubResource("LabelSettings_3hdm5")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BoxContainer2/Panel/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="BoxContainer2/Panel/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+text = "GO TO MENU"
+script = ExtResource("4_f2d3h")
+
+[connection signal="pressed" from="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/Button" to="BoxContainer2/Panel/HBoxContainer/VBoxContainer2/Button" method="_on_pressed"]

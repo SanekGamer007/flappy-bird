@@ -1,0 +1,98 @@
+[gd_scene load_steps=13 format=3 uid="uid://cu2mj6la6xk54"]
+
+[ext_resource type="Texture2D" uid="uid://diwiwudpo6j73" path="res://Entities/Bird/Textures/yellowbird-upflap.png" id="1_3aqgv"]
+[ext_resource type="Script" uid="uid://cwvf1dx3dgpb6" path="res://Entities/Bird/bird.gd" id="1_jkvqr"]
+[ext_resource type="Texture2D" uid="uid://b0egwkgl0f2ik" path="res://Entities/Bird/Textures/yellowbird-midflap.png" id="2_jkvqr"]
+[ext_resource type="Texture2D" uid="uid://dma8t4ylo7cqu" path="res://Entities/Bird/Textures/yellowbird-downflap.png" id="3_yppci"]
+[ext_resource type="AudioStream" uid="uid://bymxxkpdcnkav" path="res://Entities/Bird/SFX/sfx_wing.mp3" id="5_e262b"]
+[ext_resource type="AudioStream" uid="uid://cnaw3j23jpnxo" path="res://Entities/Bird/SFX/sfx_point.mp3" id="6_mfn8g"]
+[ext_resource type="AudioStream" uid="uid://dg6cyly8sf64v" path="res://Entities/Bird/SFX/die.ogg" id="7_lkvee"]
+[ext_resource type="AudioStream" uid="uid://dmnxukefqihv" path="res://Entities/Bird/SFX/hit.ogg" id="8_7htjh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e262b"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_3aqgv")
+}, {
+"duration": 0.5,
+"texture": ExtResource("2_jkvqr")
+}],
+"loop": true,
+"name": &"flap",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("1_3aqgv")
+}, {
+"duration": 1.5,
+"texture": ExtResource("2_jkvqr")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_yppci")
+}, {
+"duration": 1.5,
+"texture": ExtResource("2_jkvqr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jkvqr"]
+radius = 10.8
+height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfn8g"]
+radius = 12.0
+height = 35.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yppci"]
+
+[node name="Bird" type="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_jkvqr")
+jump_power = -600.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e262b")
+animation = &"idle"
+frame_progress = 0.912878
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jkvqr")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="score" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="score"]
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_mfn8g")
+debug_color = Color(0.713565, 0.483862, 0, 0.164706)
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox"]
+rotation = 1.5708
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_yppci")
+debug_color = Color(0.976471, 0, 0.396078, 0.211765)
+
+[node name="FlapSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_e262b")
+
+[node name="PointSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mfn8g")
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_lkvee")
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7htjh")
+
+[connection signal="area_entered" from="score" to="." method="_on_score_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1aa4o38u2oht"]
+
+[ext_resource type="Script" uid="uid://b24vkkm3jnsqg" path="res://Objects/Ground/ground.gd" id="1_86odm"]
+[ext_resource type="Texture2D" uid="uid://bypj36r7utei2" path="res://Objects/Ground/Textures/base.png" id="1_g04ko"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_g04ko"]
+distance = -656.0
+
+[node name="Ground" type="Parallax2D"]
+repeat_size = Vector2(668, 0)
+autoscroll = Vector2(-256, 0)
+repeat_times = 4
+script = ExtResource("1_86odm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 760)
+scale = Vector2(2, 2)
+texture = ExtResource("1_g04ko")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 304.0
+offset_top = 863.0
+offset_right = 974.0
+offset_bottom = 1868.0
+color = Color(0.870588, 0.847059, 0.580392, 1)
+
+[node name="Area2D" type="Area2D" parent="." groups=["death"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_g04ko")
